@@ -1,0 +1,11 @@
+# Data Source created from Pipe 'materialize_santa_inventory'
+
+SCHEMA >
+    `toy_id` String,
+    `timestamp` DateTime,
+    `inventory` Int16
+
+ENGINE "ReplacingMergeTree"
+ENGINE_PARTITION_KEY "toYYYYMM(timestamp)"
+ENGINE_SORTING_KEY "toy_id"
+ENGINE_VER "timestamp"

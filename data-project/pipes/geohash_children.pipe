@@ -1,0 +1,16 @@
+NODE geohash_children_0
+SQL >
+
+    SELECT
+      child_id,
+      toy_id,
+      latitude,
+      longitude,
+      geohashEncode(longitude, latitude, 4) AS geohash
+    FROM children
+
+TYPE copy
+TARGET_DATASOURCE children_geohashed
+COPY_SCHEDULE @on-demand
+
+

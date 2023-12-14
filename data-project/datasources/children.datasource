@@ -1,0 +1,19 @@
+
+SCHEMA >
+    `child_id` String,
+    `child_first_name` String,
+    `child_last_name` String,
+    `latitude` Float32,
+    `longitude` Float32,
+    `status` String,
+    `toy_id` String,
+    `naughty_reason` Nullable(String)
+
+ENGINE "MergeTree"
+ENGINE_SORTING_KEY "child_id, latitude, longitude"
+
+IMPORT_SERVICE 's3'
+IMPORT_CONNECTION_NAME 'tinybird-s3'
+IMPORT_BUCKET_URI 's3://santa-tracker/child_list*.csv'
+IMPORT_STRATEGY 'append'
+IMPORT_SCHEDULE '@on-demand'

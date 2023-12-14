@@ -1,0 +1,18 @@
+
+SCHEMA >
+    `inventory` Int16 `json:$.inventory`,
+    `timestamp` DateTime `json:$.timestamp`,
+    `toy_id` String `json:$.toy_id`
+
+ENGINE "MergeTree"
+ENGINE_PARTITION_KEY "toYYYYMM(__timestamp)"
+ENGINE_SORTING_KEY "__timestamp"
+
+KAFKA_CONNECTION_NAME 'Confluent'
+KAFKA_TOPIC 'santa_inventory_cdc'
+KAFKA_GROUP_ID 'santa_inventory_cdc_1702499454134'
+KAFKA_AUTO_OFFSET_RESET 'earliest'
+KAFKA_STORE_RAW_VALUE 'False'
+KAFKA_STORE_HEADERS 'False'
+KAFKA_TARGET_PARTITIONS 'auto'
+KAFKA_KEY_AVRO_DESERIALIZATION ''

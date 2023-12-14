@@ -1,0 +1,26 @@
+TOKEN "santa_current_inventory_endpoint_read_2377" READ
+
+NODE current_inventory
+SQL >
+
+    SELECT
+      toy_id,
+      timestamp,
+      inventory
+    FROM santa_inventory_mv
+    ORDER BY timestamp DESC
+    LIMIT 1 by toy_id
+
+
+
+NODE endpoint
+SQL >
+
+    SELECT
+      toy_name,
+      current_inventory.*
+    FROM current_inventory
+    JOIN toys using(toy_id)
+    ORDER BY inventory ASC
+
+

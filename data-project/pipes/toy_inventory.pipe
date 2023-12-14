@@ -1,0 +1,12 @@
+TOKEN "toy_inventory_endpoint_read_3433" READ
+
+NODE endpoint
+SQL >
+
+    %
+    SELECT
+      inventory
+    FROM santa_current_inventory
+    WHERE toy_id = {{String(toy_id)}}
+
+

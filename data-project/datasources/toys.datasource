@@ -1,0 +1,7 @@
+
+SCHEMA >
+    `toy_id` String,
+    `toy_name` String
+
+ENGINE "MergeTree"
+ENGINE_SORTING_KEY "toy_id, toy_name"

@@ -1,0 +1,18 @@
+TOKEN "child_info_endpoint_read_3013" READ
+
+NODE endpoint
+SQL >
+
+    %
+    SELECT
+      child_first_name,
+      child_last_name,
+      status,
+      naughty_reason,
+      toy_id,
+      toy_name
+    FROM children
+    JOIN toys USING(toy_id)
+    WHERE child_id = {{String(child_id, '00000117-df92-4f20-8305-23bb4fc65998')}}
+
+

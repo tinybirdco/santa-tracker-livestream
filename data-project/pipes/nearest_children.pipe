@@ -1,0 +1,40 @@
+TOKEN "nearest_children_toys_available_endpoint_read_2942" READ
+
+NODE filter_children
+SQL >
+
+    %
+    SELECT
+      child_id,
+      toy_id,
+      latitude,
+      longitude
+    FROM children_geohashed
+    WHERE geohash = geohashEncode({{Float32(santa_lon)}}, {{Float32(santa_lat)}}, 4)
+
+
+
+NODE santa_inventory
+SQL >
+
+    SELECT * 
+    FROM santa_current_inventory
+
+
+
+NODE endpoint
+SQL >
+
+    %
+    SELECT
+      child_id,
+      latitude,
+      longitude,
+      geoDistance({{Float32(santa_lon)}}, longitude, {{Float32(santa_lat)}}, latitude) AS distance
+    FROM filter_children
+    INNER JOIN santa_inventory using(toy_id)
+    WHERE santa_inventory.inventory > 0
+    ORDER BY distance ASC
+    LIMIT {{UInt16(limit, 50)}}
+
+

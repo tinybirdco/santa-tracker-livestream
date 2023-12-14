@@ -1,0 +1,10 @@
+
+SCHEMA >
+    `child_id` String,
+    `toy_id` String,
+    `latitude` Float32,
+    `longitude` Float32,
+    `geohash` String
+
+ENGINE "MergeTree"
+ENGINE_SORTING_KEY "geohash"

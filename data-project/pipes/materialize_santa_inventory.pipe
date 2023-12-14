@@ -1,0 +1,18 @@
+NODE calculate_inventory
+SQL >
+
+    SELECT
+      toy_id,
+      timestamp,
+      inventory
+    FROM santa_inventory_cdc
+    ORDER BY timestamp DESC
+    LIMIT 1 by toy_id
+
+TYPE materialized
+DATASOURCE santa_inventory_mv
+ENGINE "ReplacingMergeTree"
+ENGINE_PARTITION_KEY "toYYYYMM(timestamp)"
+ENGINE_SORTING_KEY "toy_id"
+ENGINE_VER "timestamp"
+
