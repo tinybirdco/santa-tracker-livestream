@@ -89,7 +89,7 @@ For the `children` Data Source, use the `generate_child_list.py` Python script t
 
 The `santa_inventory_events.py` data generator generates fresh inventory of Santa's toys for delivery. This script creates and writes inventory events to the Kafka stream (with help of the using the `confluent_kafka` Python package). Near the start of the script, be sure to enter your `CONFLUENT_SERVER`, `CONFLUENT_KEY`, and `CONFLUENT_SECRET` details. 
 
-This script has command-line options for both restocking toys (`--restock`) and remove all inventory (`--drop`). There is also a `--speed`` option to control the rate at which Santa's inventory gets depleted. 
+This script has command-line options for both restocking toys (`--restock`) and remove all inventory (`--drop`). There is also a `--speed` option to control the rate at which Santa's inventory gets depleted. 
 
 This script makes calls to the demo `santa_current-inventory` API Endpoint, so it can pick up from where it left off. 
 
