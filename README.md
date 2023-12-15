@@ -77,7 +77,7 @@ KAFKA_GROUP_ID <choose a consumer group ID>
 
 ```
 
-### 6. Create the Data Sources
+### 6. Create the other Data Sources
 
 This demo is based on two Data Sources, `toys` and `children`. 
 
@@ -85,7 +85,7 @@ For the `toys` Data Source, use the `toy_uuid_generator.py` Python script to gen
 
 For the `children` Data Source, use the `generate_child_list.py` Python script to create a set of files with children metadata. This script uses the Faker package to generate these child metadata: child_id, child_first_name, child_last_name, latitude, longitude, status, toy_id, naughty_reason. By default, this script will create a single file with 1,000 entries. For the demo, we created 50 files, each with a million entries (!). 
 
-### 7. Run the live data generator
+### 7. Run the live inventory data generator
 
 The `santa_inventory_events.py` data generator generates fresh inventory of Santa's toys for delivery. This script creates and writes inventory events to the Kafka stream (with help of the using the `confluent_kafka` Python package). Near the start of the script, be sure to enter your `CONFLUENT_SERVER`, `CONFLUENT_KEY`, and `CONFLUENT_SECRET` details. 
 
