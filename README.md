@@ -79,13 +79,26 @@ KAFKA_GROUP_ID <choose a consumer group ID>
 
 ```
 
-### Create a `children` info Data Source
+### Create the Data Sources
 
+This demo is based on two Data Sources, `toys` and `children`. 
+
+For the `toys` Data Source, use the `toy_uuid_generator.py` Python script to generate a list of toys, each with a unique UUID. Once created you can drag and drop it onto the Tinybird UI, or use the "File Upload" option to add the Data Source. 
+
+For the `children` Data Source, use the `generate_child_list.py` Python script to create a set of files with children metadata. This script uses the Faker package to generate these child metadata: child_id, child_first_name, child_last_name, latitude, longitude, status, toy_id, naughty_reason. By default, this script will create a single file with 1,000 entries. For the demo, we created 50 files, each with a million entries (!). 
+
+### Run the live data generator
+
+The `santa_inventory_events.py` data generator generates fresh inventory of Santa's toys for delivery. This script has command-line options for both restocking toys (`--restock`) and remove all inventory (`--drop`). There is also a `--speed`` option to control the rate at which Santa's inventory gets depleted. 
+
+This script makes calls to the demo `santa_current-inventory` API Endpoint, so it can pick up from where it left off. 
+
+When restocking, it will loop through the list of toys and created between 50 and 500 of each. 
 
 
 ### Push the remaining resources to the Tinybird server
 
-Push the remaining Pipes and Data Sources to Tinybird with...
+Push the remaining Pipes and Data Sources to Tinybird with:
 
 ```
 tb push
@@ -93,7 +106,7 @@ tb push
 
 ### Build a frontend!
 
-You'll now have several Tinybird APIs that you can build with. We used Retool to build a simple frontend application. If you'd like to see how we did that, watch the [recording of our live coding session](https://www.youtube.com/watch?v=rf7ZannHDf0)
+You'll now have several Tinybird APIs that you can build with. We used Retool to build a simple frontend application. If you'd like to see how we did that, watch the [recording of our live coding session](https://www.youtube.com/watch?v=RI0k1P6UdLQ)
 
 ## Contributing
 
